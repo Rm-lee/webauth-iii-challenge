@@ -8,14 +8,13 @@ module.exports = () => {
 
   return async (req, res, next) => {
     try {
-        
       const { username, password } = req.headers
       if (!username || !password) {
         return res.status(401).json(authErr)
       }
       const user = await usersModel.findBy({ username }).first()
       if (!user) {
-        return res.status(401).json(authErr)
+        return res.status(401).json({authErr})
       }
 
       const passwordValid = await bcrypt.compare(password, user.password)

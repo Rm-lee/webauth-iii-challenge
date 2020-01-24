@@ -42,7 +42,7 @@ catch (err){
 
 router.get("/", restricted(), async (req, res, next) => {
     try {
-      const users = await userModel.find()
+      const users = await Users.find()
       
       res.json(users)
     } catch (err) {
